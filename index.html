@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>clock</title>
+  <!-- <script src="index.js"></script>-->
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+
+      /*background: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR6M6qwltqWK2_4gx0TgC_KpBV8yb1AiRQHBcwfrdJMD3wGa_sblIHqFEeZMGd1oGJmVss&usqp=CAU");
+      background: url("https://images.unsplash.com/photo-1618588507085-c79565432917?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8YmVhdXRpZnVsJTIwbmF0dXJlfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&w=1000&q=80");
+     */
+      background-position: center;
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-color: rgb(64, 192, 171);
+    }
+
+    #clock {
+      background-color: rgb(7, 7, 7);
+      height: 35vw;
+      width: 35vw;
+
+      background: url("IIITL logo.jpeg");
+      background: url("mon1.png");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      /*border: 3px solid red;/*/
+      margin: auto;
+      justify-content: center;
+      position: relative;
+      /*left: 40px;
+      top: 50px;*/
+    }
+
+    #hour,
+    #minute,
+    #second {
+      position: relative;
+      background-color: rgb(0, 0, 0);
+      border: rgb(241, 241, 241);
+      border-radius: 10px;
+      transform-origin: bottom;
+    }
+
+    /*
+    #hour {
+      width: 1.8%;
+      height: 17%;
+      top: 34.5%;
+      left: 48.6%;
+      opacity: 0.8;
+      /*display: none;/*to view only hour hand
+    }
+
+    #minute {
+      width: 1.6%;
+      height: 23%;
+      top: 12.5%;
+      top: 12%;
+      left: 49.5%;
+      opacity: 0.8;
+      /*display: none;/*to view only hour hand
+    }
+
+    #second {
+      width: 1.4%;
+      height: 34%;
+      top: 18.5%;
+      top: -22.5%;
+      left: 49.5%;
+      opacity: 0.8;
+
+    }*/
+    #hour {
+      width: 1.8%;
+      height: 17%;
+      top: 34.5%;
+      left: 48.6%;
+      opacity: 0.8;
+      /*display: none;/*to view only hour hand*/
+    }
+
+    #minute {
+      width: 1.6%;
+      height: 23%;
+      top: 12.5%;
+      top: 11%;
+      left: 48.5%;
+      opacity: 0.8;
+      /*display: none;/*to view only hour hand*/
+    }
+
+    #second {
+      width: 1.4%;
+      height: 34%;
+      top: 18.5%;
+      top: -23.5%;
+      left: 48.5%;
+      opacity: 0.8;
+    }
+
+    .top {
+      display: flex;
+      justify-content: space-around;
+      margin: 40px;
+      color: white;
+      font-family: sans-serif;
+      font-size: 20px;
+    }
+
+    .top option {
+      color: antiquewhite;
+      background-color: black;
+      text-align: center;
+
+    }
+
+    select {
+      border: 0px;
+      padding: 10px;
+      width: 200px;
+      background-color: black;
+      color: antiquewhite;
+    }
+    select:focus {
+      outline: none;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="top">
+    <div class="section">
+      <label for="section">Choose section:</label>
+      <select name="section" id="section">
+        <option value="cs1">CS-1</option>
+        <option value="cs2">CS-2</option>
+      </select>
+    </div>
+    <div class="day">
+      <label for="day">Choose Day:</label>
+      <select name="day" id="day" onchange="change(this)">
+        <option value="monday">Monday</option>
+        <option value="tuesday">Tuesday</option>
+        <option value="wednesday">Wednesday</option>
+        <option value="thursday">Thursday</option>
+        <option value="friday">Friday</option>
+      </select>
+    </div>
+    
+  </div>
+  <div id="clock">
+    <div id="hour"></div>
+    <div id="minute"></div>
+    <div id="second"></div>
+  </div>
+
+  <script>
+    //30h+m/2=for h hour
+    //12hr->360deg
+    //60min->30deg  both hr hand
+    //60min->360deg
+    //60sec->360degboth min hand
+    //60sec->360deg sec hand
+
+    setInterval(() => {
+      date = new Date();
+      hrtime = date.getHours();
+      mintime = date.getMinutes();
+      sectime = date.getSeconds();
+      hrrotation = 30 * hrtime + mintime / 2;
+      minrotaton = 6 * mintime;
+      secrotation = 6 * sectime;
+      hour.style.transform = `rotate(${hrrotation}deg)`
+      minute.style.transform = `rotate(${minrotaton}deg)`
+      second.style.transform = `rotate(${secrotation}deg)`
+    }, 1000)//to get anything 1000 times
+
+    let clock = document.getElementById('clock')
+    function change(e) {
+      let sec=document.getElementById('section')
+      if (e.value == 'tuesday' && sec.value=='cs2') {
+        clock.style.backgroundImage = "url('TUE.png')"
+      }
+      if (e.value == 'monday' && sec.value=='cs2') {
+        clock.style.backgroundImage = "url('MON.png')"
+      }
+      if (e.value == 'wednesday' && sec.value=='cs2') {
+        clock.style.backgroundImage = "url('WED.png')"
+      }
+      if (e.value == 'thursday' && sec.value=='cs2') {
+        clock.style.backgroundImage = "url('THURS.png')"
+      }
+      if (e.value == 'friday' && sec.value=='cs2') {
+        clock.style.backgroundImage = "url('FRI.png')"
+      }
+      if (e.value == 'tuesday' && sec.value=='cs1') {
+        clock.style.backgroundImage = "url('tue1.png')"
+      }
+      if (e.value == 'monday' && sec.value=='cs1') {
+        clock.style.backgroundImage = "url('mon1.png')"
+      }
+      if (e.value == 'wednesday' && sec.value=='cs1') {
+        clock.style.backgroundImage = "url('wed1.png')"
+      }
+      if (e.value == 'thursday' && sec.value=='cs1') {
+        clock.style.backgroundImage = "url('thu1.png')"
+      }
+      if (e.value == 'friday' && sec.value=='cs1') {
+        clock.style.backgroundImage = "url('fri1.png')"
+      }
+      
+    }
+  </script>
+</body>
+
+</html>
