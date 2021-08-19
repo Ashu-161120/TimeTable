@@ -8,16 +8,10 @@
   <title>clock</title>
   <!-- <script src="index.js"></script>-->
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-    }
+    
 
     body {
-
-      /*background: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR6M6qwltqWK2_4gx0TgC_KpBV8yb1AiRQHBcwfrdJMD3wGa_sblIHqFEeZMGd1oGJmVss&usqp=CAU");
-      background: url("https://images.unsplash.com/photo-1618588507085-c79565432917?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8YmVhdXRpZnVsJTIwbmF0dXJlfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&w=1000&q=80");
-     */
+      background: url("BGN5.png");
       background-position: center;
       background-size: cover;
       background-repeat: no-repeat;
@@ -29,7 +23,7 @@
       height: 35vw;
       width: 35vw;
 
-      background: url("IIITL logo.jpeg");
+      
       background: url("mon1.png");
       background-size: cover;
       background-position: center;
@@ -113,28 +107,77 @@
       display: flex;
       justify-content: space-around;
       margin: 40px;
-      color: white;
+      margin-left: 150px;
+      margin-right: 150px;
+      color: black;
       font-family: sans-serif;
       font-size: 20px;
     }
 
     .top option {
-      color: antiquewhite;
-      background-color: black;
+      color: black;
+      background-color: rgb(12, 184, 214);
       text-align: center;
 
     }
-
+    .section{
+      width:250px;
+    }
+    .day{
+      width: 250px;
+    }
     select {
       border: 0px;
       padding: 10px;
-      width: 200px;
-      background-color: black;
-      color: antiquewhite;
+      width: 100px;
+      background-color:rgb(12, 184, 214);
+      color: black;
     }
     select:focus {
       outline: none;
     }
+
+    @media only screen and (max-width: 400px) {
+      .top{
+        display: block;
+        margin-left: 0px;
+      margin-right: 0px;
+      }
+      #clock{
+        width:100%;
+        height: 300px;
+      }
+      select{
+        width: 70%;
+      }
+      .section{
+        width: auto;
+      }
+      .day{
+        width: auto;
+      }
+      body{
+        background:rgb(64, 192, 171);
+      }
+      select{
+        background-color: black;
+        color:bisque;
+      }
+      .top option {
+        color: bisque;
+        background-color: black;
+        text-align: center;
+  
+      }
+    }
+    @media only screen and (max-width: 200px) {
+      #clock{
+        width:100%;
+        height: 200px;
+      }
+    }
+    
+
   </style>
 </head>
 
@@ -142,14 +185,14 @@
   <div class="top">
     <div class="section">
       <label for="section">Choose section:</label>
-      <select name="section" id="section">
+      <select name="section" id="section" onchange="section(this)">
         <option value="cs1">CS-1</option>
         <option value="cs2">CS-2</option>
       </select>
     </div>
     <div class="day">
       <label for="day">Choose Day:</label>
-      <select name="day" id="day" onchange="change(this)">
+      <select name="day" id="day" onchange="day(this)">
         <option value="monday">Monday</option>
         <option value="tuesday">Tuesday</option>
         <option value="wednesday">Wednesday</option>
@@ -187,7 +230,7 @@
     }, 1000)//to get anything 1000 times
 
     let clock = document.getElementById('clock')
-    function change(e) {
+    function day(e) {
       let sec=document.getElementById('section')
       if (e.value == 'tuesday' && sec.value=='cs2') {
         clock.style.backgroundImage = "url('TUE.png')"
@@ -217,6 +260,40 @@
         clock.style.backgroundImage = "url('thu1.png')"
       }
       if (e.value == 'friday' && sec.value=='cs1') {
+        clock.style.backgroundImage = "url('fri1.png')"
+      }
+      
+    }
+    function section(e) {
+      let week=document.getElementById('day')
+      if (e.value == 'cs2' && week.value=='tuesday') {
+        clock.style.backgroundImage = "url('TUE.png')"
+      }
+      if (e.value == 'cs2' && week.value=='monday') {
+        clock.style.backgroundImage = "url('MON.png')"
+      }
+      if (e.value == 'cs2' && week.value=='wednesday') {
+        clock.style.backgroundImage = "url('WED.png')"
+      }
+      if (e.value == 'cs2' && week.value=='thursday') {
+        clock.style.backgroundImage = "url('THURS.png')"
+      }
+      if (e.value == 'cs2' && week.value=='friday') {
+        clock.style.backgroundImage = "url('FRI.png')"
+      }
+      if (e.value == 'cs1' && week.value=='tuesday') {
+        clock.style.backgroundImage = "url('tue1.png')"
+      }
+      if (e.value == 'cs1' && week.value=='monday') {
+        clock.style.backgroundImage = "url('mon1.png')"
+      }
+      if (e.value == 'cs1' && week.value=='wednesday') {
+        clock.style.backgroundImage = "url('wed1.png')"
+      }
+      if (e.value == 'cs1' && week.value=='thursday') {
+        clock.style.backgroundImage = "url('thu1.png')"
+      }
+      if (e.value == 'cs1' && week.value=='friday') {
         clock.style.backgroundImage = "url('fri1.png')"
       }
       
